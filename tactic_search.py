@@ -13,7 +13,12 @@ This is honestly a heuristic, not a neural policy -- documented as a known
 scope limitation in the paper.
 """
 
-from coq_runner import verify_snippet, VerifyResult
+from rocq_runner import verify_snippet, VerifyResult
+
+# Bound on how many known lemmas we'll generate pairwise chained-rewrite
+# combos for. Combos grow O(n^2 * 4 directions * 2 simpl-variants), so this
+# keeps a single `first [...]` block from blowing up as the library grows.
+_MAX_LEMMAS_FOR_PAIR_COMBOS = 4
 
 
 def _portfolio_alternatives(lemma_names):
@@ -26,13 +31,17 @@ def _portfolio_alternatives(lemma_names):
     alts = [
         "reflexivity",
         "simpl; reflexivity",
-        "simpl; auto",
-        "simpl; congruence",
     ]
-    # Try IH directly (works for the classic step-case pattern)
+    # Try IH directly (works for the classic step-case pattern).
+    # `auto`/`congruence` are deliberately not used here: `auto` can leave an
+    # unresolved shelved existential goal while still reporting the bracket
+    # as a success inside `first [...]` (verified against the real kernel --
+    # the failure only surfaces later as a spurious "incomplete proof" at
+    # Qed, not at the tactic itself), and both undercut the project's point
+    # that closing a goal has to go through real induction/rewriting rather
+    # than a generic decision procedure.
     alts += [
         "simpl; rewrite IH; reflexivity",
-        "simpl; rewrite IH; auto",
         "simpl; rewrite <- IH; reflexivity",
     ]
     # Try each currently-known lemma, forwards and backwards, alone and
@@ -46,6 +55,21 @@ def _portfolio_alternatives(lemma_names):
             f"simpl; rewrite {lem}; rewrite IH; reflexivity",
             f"rewrite {lem}; reflexivity",
         ]
+    # Chained two-lemma combos: some goals (e.g. a target theorem that
+    # reduces via one invented lemma into the shape of another) only close
+    # after rewriting with two *different* lemmas in sequence, in some
+    # combination of directions. This has no IH involved, so it also covers
+    # non-inductive targets attacked straight with the combinator.
+    if len(lemma_names) <= _MAX_LEMMAS_FOR_PAIR_COMBOS:
+        for a in lemma_names:
+            for b in lemma_names:
+                if a == b:
+                    continue
+                for a_dir in ("", "<- "):
+                    for b_dir in ("", "<- "):
+                        step = f"rewrite {a_dir}{a}; rewrite {b_dir}{b}; reflexivity"
+                        alts.append(step)
+                        alts.append(f"simpl; {step}")
     return alts
 
 
@@ -59,11 +83,17 @@ def build_script(name, statement, induction_var, lemma_names):
     combinator = "first [ " + " | ".join(alts) + " ]"
 
     if induction_var is None:
-        proof = f"Proof.\n  {combinator}.\nQed."
+        proof = f"Proof.\n  intros.\n  {combinator}.\nQed."
     else:
         v = induction_var
+        # `intros.` first, so any variables quantified after `v` (e.g. `m` in
+        # `forall n m, ...`) are already fixed in context before induction --
+        # otherwise `induction` generalizes them into a forall-quantified IH,
+        # and rewriting with that IH under the still-bound goal quantifier
+        # picks up the wrong instantiation (verified against the real kernel).
         proof = (
             f"Proof.\n"
+            f"  intros.\n"
             f"  induction {v} as [| {v}' IH].\n"
             f"  - {combinator}.\n"
             f"  - {combinator}.\n"

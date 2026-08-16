@@ -1,0 +1,17 @@
+{
+  "function_under_test": "myadd",
+  "target_theorems": [
+    {
+      "id": "T1",
+      "name": "myadd_comm",
+      "statement": "forall n m : nat, myadd n m = myadd m n",
+      "induction_variable": "n"
+    },
+    {
+      "id": "T2",
+      "name": "myadd_n_1",
+      "statement": "forall n : nat, myadd n (S O) = S n",
+      "induction_variable": null
+    }
+  ]
+}

@@ -1,0 +1,336 @@
+{
+  "training": [
+    {
+      "episode": 0,
+      "total_reward": -3.0,
+      "kernel_calls": 8,
+      "theorems_proved": 1,
+      "epsilon": 0.291
+    },
+    {
+      "episode": 1,
+      "total_reward": -15.0,
+      "kernel_calls": 10,
+      "theorems_proved": 0,
+      "epsilon": 0.28226999999999997
+    },
+    {
+      "episode": 2,
+      "total_reward": -15.0,
+      "kernel_calls": 5,
+      "theorems_proved": 0,
+      "epsilon": 0.27380189999999993
+    },
+    {
+      "episode": 3,
+      "total_reward": -13.0,
+      "kernel_calls": 3,
+      "theorems_proved": 0,
+      "epsilon": 0.26558784299999993
+    },
+    {
+      "episode": 4,
+      "total_reward": 13.0,
+      "kernel_calls": 7,
+      "theorems_proved": 2,
+      "epsilon": 0.25762020770999994
+    },
+    {
+      "episode": 5,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.24989160147869993
+    },
+    {
+      "episode": 6,
+      "total_reward": 15.0,
+      "kernel_calls": 5,
+      "theorems_proved": 2,
+      "epsilon": 0.24239485343433892
+    },
+    {
+      "episode": 7,
+      "total_reward": 0.0,
+      "kernel_calls": 5,
+      "theorems_proved": 1,
+      "epsilon": 0.23512300783130874
+    },
+    {
+      "episode": 8,
+      "total_reward": 1.0,
+      "kernel_calls": 4,
+      "theorems_proved": 1,
+      "epsilon": 0.22806931759636948
+    },
+    {
+      "episode": 9,
+      "total_reward": 15.0,
+      "kernel_calls": 5,
+      "theorems_proved": 2,
+      "epsilon": 0.22122723806847838
+    },
+    {
+      "episode": 10,
+      "total_reward": 1.0,
+      "kernel_calls": 4,
+      "theorems_proved": 1,
+      "epsilon": 0.21459042092642402
+    },
+    {
+      "episode": 11,
+      "total_reward": 13.0,
+      "kernel_calls": 7,
+      "theorems_proved": 2,
+      "epsilon": 0.2081527082986313
+    },
+    {
+      "episode": 12,
+      "total_reward": 3.0,
+      "kernel_calls": 7,
+      "theorems_proved": 1,
+      "epsilon": 0.20190812704967237
+    },
+    {
+      "episode": 13,
+      "total_reward": 0.0,
+      "kernel_calls": 5,
+      "theorems_proved": 1,
+      "epsilon": 0.1958508832381822
+    },
+    {
+      "episode": 14,
+      "total_reward": 15.0,
+      "kernel_calls": 5,
+      "theorems_proved": 2,
+      "epsilon": 0.18997535674103672
+    },
+    {
+      "episode": 15,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.1842760960388056
+    },
+    {
+      "episode": 16,
+      "total_reward": 15.0,
+      "kernel_calls": 5,
+      "theorems_proved": 2,
+      "epsilon": 0.17874781315764143
+    },
+    {
+      "episode": 17,
+      "total_reward": 15.0,
+      "kernel_calls": 5,
+      "theorems_proved": 2,
+      "epsilon": 0.17338537876291218
+    },
+    {
+      "episode": 18,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.1681838174000248
+    },
+    {
+      "episode": 19,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.16313830287802406
+    },
+    {
+      "episode": 20,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.15824415379168333
+    },
+    {
+      "episode": 21,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.15349682917793284
+    },
+    {
+      "episode": 22,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.14889192430259485
+    },
+    {
+      "episode": 23,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.144425166573517
+    },
+    {
+      "episode": 24,
+      "total_reward": 2.0,
+      "kernel_calls": 3,
+      "theorems_proved": 1,
+      "epsilon": 0.1400924115763115
+    },
+    {
+      "episode": 25,
+      "total_reward": 2.0,
+      "kernel_calls": 3,
+      "theorems_proved": 1,
+      "epsilon": 0.13588963922902214
+    },
+    {
+      "episode": 26,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.13181295005215146
+    },
+    {
+      "episode": 27,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.12785856155058692
+    },
+    {
+      "episode": 28,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.1240228047040693
+    },
+    {
+      "episode": 29,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.12030212056294722
+    },
+    {
+      "episode": 30,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.11669305694605879
+    },
+    {
+      "episode": 31,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.11319226523767702
+    },
+    {
+      "episode": 32,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.1097964972805467
+    },
+    {
+      "episode": 33,
+      "total_reward": 2.0,
+      "kernel_calls": 3,
+      "theorems_proved": 1,
+      "epsilon": 0.1065026023621303
+    },
+    {
+      "episode": 34,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.10330752429126638
+    },
+    {
+      "episode": 35,
+      "total_reward": 15.0,
+      "kernel_calls": 5,
+      "theorems_proved": 2,
+      "epsilon": 0.10020829856252839
+    },
+    {
+      "episode": 36,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.09720204960565253
+    },
+    {
+      "episode": 37,
+      "total_reward": 15.0,
+      "kernel_calls": 5,
+      "theorems_proved": 2,
+      "epsilon": 0.09428598811748296
+    },
+    {
+      "episode": 38,
+      "total_reward": 16.0,
+      "kernel_calls": 4,
+      "theorems_proved": 2,
+      "epsilon": 0.09145740847395846
+    },
+    {
+      "episode": 39,
+      "total_reward": 15.0,
+      "kernel_calls": 5,
+      "theorems_proved": 2,
+      "epsilon": 0.0887136862197397
+    }
+  ],
+  "final_greedy_rollout": {
+    "events": [
+      {
+        "action": "INVENT_UNIT",
+        "theorem": "T1",
+        "result": "LEMMA_VERIFIED:myadd_n_0_v1"
+      },
+      {
+        "action": "INVENT_SWAP",
+        "theorem": "T1",
+        "result": "LEMMA_VERIFIED:myadd_n_Sm_v2"
+      },
+      {
+        "action": "DIRECT",
+        "theorem": "T1",
+        "result": "PROVED"
+      },
+      {
+        "action": "DIRECT",
+        "theorem": "T2",
+        "result": "PROVED"
+      }
+    ],
+    "invented_lemmas": [
+      {
+        "name": "myadd_n_0_v1",
+        "kind": "UNIT",
+        "statement": "forall n : nat, myadd n 0 = n",
+        "theorem_context": "T1"
+      },
+      {
+        "name": "myadd_n_Sm_v2",
+        "kind": "SWAP",
+        "statement": "forall n m : nat, S (myadd n m) = myadd n (S m)",
+        "theorem_context": "T1"
+      }
+    ],
+    "theorem_results": [
+      {
+        "id": "T1",
+        "proved": true,
+        "kernel_calls_used": 3
+      },
+      {
+        "id": "T2",
+        "proved": true,
+        "kernel_calls_used": 1
+      }
+    ],
+    "total_kernel_calls": 4,
+    "total_reward": 16.0
+  }
+}

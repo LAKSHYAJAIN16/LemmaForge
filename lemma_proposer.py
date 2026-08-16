@@ -28,7 +28,7 @@ a learned generalization model operating on the real Coq proof-state AST
 from dataclasses import dataclass
 from typing import Optional
 import tactic_search
-from coq_runner import VerifyResult
+from rocq_runner import VerifyResult
 
 
 @dataclass

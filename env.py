@@ -22,7 +22,17 @@ Reward:
           learn *useful* invention, not just "any true lemma")
 
 State (small, discretized -> tabular policy):
-    (theorem_index, direct_failed_so_far, n_invents_tried_this_theorem, lib_size_bucket)
+    (theorem_index, direct_failed_so_far, has_unit_lemma, has_swap_lemma, lib_size_bucket)
+
+has_unit_lemma / has_swap_lemma track whether a lemma of that *kind* is
+currently in the shared library (persists across theorems within an
+episode, same as the library itself) -- NOT how many INVENT actions have
+been taken. An earlier version of this state used a raw per-theorem invent
+counter instead of tracking lemma kind, which meant "have SWAP, still need
+UNIT" and "have UNIT, still need SWAP" collapsed into the same state; the
+agent couldn't represent the difference, so it learned to loop re-inventing
+one kind instead of reliably completing both. Tracking kind directly makes
+the state properly Markov for this decision.
 """
 
 import json
@@ -32,7 +42,6 @@ from typing import List
 
 import tactic_search
 import lemma_proposer
-from coq_runner import verify_snippet
 
 ACTIONS = ["DIRECT", "INVENT_UNIT", "INVENT_SWAP", "GIVE_UP"]
 
@@ -62,6 +71,8 @@ class LemmaDiscoveryEnv:
         self.library_src = ""          # concatenated verified lemma sources
         self.lemma_names = []          # names currently usable by tactic_search
         self.candidate_counter = 0
+        self.has_unit = False          # kind-level, persists across theorems
+        self.has_swap = False
         self.log = EpisodeLog()
         self.t_idx = 0
         self._start_theorem()
@@ -70,7 +81,6 @@ class LemmaDiscoveryEnv:
     # ---- per-theorem bookkeeping ----
     def _start_theorem(self):
         self.direct_failed = False
-        self.n_invents_this_theorem = 0
         self.steps_this_theorem = 0
         self.theorem_done = False
 
@@ -83,7 +93,8 @@ class LemmaDiscoveryEnv:
         return 2
 
     def _state(self):
-        return (self.t_idx, int(self.direct_failed), self.n_invents_this_theorem, self._lib_size_bucket())
+        return (self.t_idx, int(self.direct_failed), int(self.has_unit), int(self.has_swap),
+                self._lib_size_bucket())
 
     @property
     def done(self):
@@ -127,10 +138,13 @@ class LemmaDiscoveryEnv:
             )
             self.log.total_kernel_calls += 1
             reward -= 1.0
-            self.n_invents_this_theorem += 1
             if res.ok:
                 self.library_src += f"\n{tactic_search.build_script(cand.name, cand.statement, cand.induction_var, self.lemma_names)}\n"
                 self.lemma_names.append(cand.name)
+                if cand.kind == "UNIT":
+                    self.has_unit = True
+                else:
+                    self.has_swap = True
                 self.log.invented_lemmas.append({
                     "name": cand.name, "kind": cand.kind, "statement": cand.statement,
                     "theorem_context": thm["id"],
